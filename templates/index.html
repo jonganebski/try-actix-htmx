@@ -3,20 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tailwindcss@3.3.3/src/css/preflight.css"
+    />
+    <link rel="stylesheet" href="css/prevent-fouc.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime"></script>
+    <script
+      src="https://unpkg.com/htmx.org@1.9.4"
+      integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV"
+      crossorigin="anonymous"
+    ></script>
+    <title>Todos</title>
   </head>
-  <body>
-    <div hx-post="/mouse_entered/Mouse" hx-trigger="mouseenter">
-      [Here Mouse, Mouse!]
-    </div>
-    <p>{{name}}</p>
-    <p>{{text}}</p>
-    <div hx-get="/api/data" hx-trigger="load" hx-swap="outerHTML" />
-    <div hx-get="/api/todos" hx-trigger="load" hx-swap="outerHTML" />
+  <body un-cloak>
+    <header class="h-100px w-full flex items-center justify-center">
+      <h1 class="text-8">TODO LIST</h1>
+    </header>
+
+    <main class="p-x-4">
+      <div class="max-w-500px m-x-auto">
+        <ul>
+          {% for todo in todos %}
+          <li class="flex gap-4 text-10">
+            <form
+              class="flex items-center"
+              action="/api/todo/{{ todo.id }}/toggle"
+              method="post"
+            >
+              <label
+                for="todo {{ todo.id }}"
+                class="block w-5 h-5 border-1 {% if todo.done == true %} bg-blue {% endif %}"
+              ></label>
+              <input id="todo {{ todo.id }}" class="hidden" type="submit" />
+            </form>
+            <span class="{% if todo.done == true %} line-through {% endif %}">
+              {{ todo.description }}
+            </span>
+          </li>
+          {% endfor %}
+        </ul>
+
+        <form class="mt-4">
+          <label class="hidden" for="new-todo">New TODO: </label>
+          <input
+            class="w-full py-2 px-3 border-2 border-gray-300 focus-border-emerald-500 rounded-2 text-8 outline-unset"
+            type="text"
+            id="new-todo"
+            name="new-todo"
+            placeholder="뭘 할까여?"
+          />
+        </form>
+      </div>
+    </main>
   </body>
-  <script
-    src="https://unpkg.com/htmx.org@1.9.4"
-    integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV"
-    crossorigin="anonymous"
-  ></script>
 </html>

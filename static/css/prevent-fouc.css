@@ -1,0 +1,7 @@
+/* 
+* Prevent FOUC (Flash Of Unstyled Content)
+* https://unocss.dev/integrations/runtime#preventing-fouc 
+*/
+[un-cloak] {
+  display: none;
+}

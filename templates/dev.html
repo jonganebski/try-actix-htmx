@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tailwindcss@3.3.3/src/css/preflight.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime"></script>
+    <script
+      src="https://unpkg.com/htmx.org@1.9.4"
+      integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV"
+      crossorigin="anonymous"
+    ></script>
+    <title>Todos</title>
+  </head>
+  <body>
+    <header class="h-100px w-full flex items-center justify-center">
+      <h1 class="text-8">TODO LIST</h1>
+    </header>
+
+    <main class="p-x-4">
+      <form class="max-w-500px m-x-auto">
+        <ul>
+          <li class="flex gap-4 text-10">
+            <input class="w-6" type="checkbox" />
+            <span>로밍 신청하기</span>
+          </li>
+        </ul>
+        <label class="hidden" for="new-todo">New TODO: </label>
+        <input
+          class="w-full mt-4 py-2 px-3 border-2 border-gray-300 focus-border-emerald-500 rounded-2 text-8 outline-unset"
+          type="text"
+          id="new-todo"
+          name="new-todo"
+          placeholder="뭘 할까여?"
+        />
+      </form>
+    </main>
+  </body>
+</html>

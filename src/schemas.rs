@@ -3,9 +3,9 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Todo {
-    created_at: DateTime<Utc>,
-    updated_at: DateTime<Utc>,
-    description: String,
-    done: bool,
-    id: i32,
+    pub created_at: DateTime<Utc>,
+    pub updated_at: DateTime<Utc>,
+    pub description: String,
+    pub done: bool,
+    pub id: i32,
 }
